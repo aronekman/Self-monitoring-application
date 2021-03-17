@@ -1,0 +1,55 @@
+<%- include('./partials/header.ejs') %>
+<% if (morning)  { %>
+    <h2>Morning Report</h2>
+    <form method="Post" action="/behavior/reporting" >
+    <label>Date:</label>
+    <input id="date" type="date" value="<%= date %>" name="morning" /><br>
+    <label>Sleep duration:</label>
+    <input type="number" step=".01" name="sleep" value="<%= sleep %>" /><br>
+    <label>Sleep quality:</label>
+    <label>1</label><input type="range" max="5" min="1" name="quality" value="<%= quality %>" /><label>5</label><br>
+    <label>Generic mood:</label>
+    <label>1</label><input type="range" max="5" min="1" name="mood" value="<%= mood %>" /><label>5</label><br>
+    <input type="submit" value="Submit" />
+    </form>
+    <%- include('./partials/errors.ejs', {
+        errors: errors
+    }) %>
+<% } else if (evening) { %>
+    <h2>Evening Report</h2>
+    <form method="Post" action="/behavior/reporting" >
+    <label>Date:</label>
+    <input id="date"type="date" value="<%= date %>" name="evening" /><br>
+    <label>Time spent on sports and exercise:</label>
+    <input type="number" step=".01" name="sports" value="<%= sports %>" /><br>
+    <label>Time spent studying:</label>
+    <input type="number" step=".01" name="study" value="<%= study %>"/><br>
+    <label>Regularity and quality of eating:</label>
+    <label>1</label><input type="range" max="5" min="1" name="eating" value="<%= eating %>" /><label>5</label><br>
+    <label>Generic mood:</label>
+    <label>1</label><input type="range" max="5" min="1" name="mood" value="<%= mood %>"/><label>5</label><br>
+    <input type="submit" value="Submit" />
+    </form>
+    <%- include('./partials/errors.ejs', {
+        errors: errors
+    }) %>
+<% } else { %>
+    <h2>What would you like to report on?</h2>
+    <div style="display: flex;" >
+        <form method="GET" action="/behavior/reporting" >
+            <input type="submit" name="morning" value="Morning" > 
+            <input type="submit" name="evening" value="Evening" > 
+        </form>
+    </div>
+    <div>   
+        <% if (prev_morning) { %> 
+            <p>Morning report for today already submitted</p>
+        <% } %>
+        <% if (prev_evening) { %> 
+            <p>Evening report for today already submitted</p>
+        <% } %>
+    </div>
+<% } %>
+<a href="/">Home</a>
+
+<%- include('./partials/footer.ejs') %>

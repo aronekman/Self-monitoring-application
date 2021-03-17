@@ -1,0 +1,24 @@
+<%- include('./partials/header.ejs') %>
+<h1>Registration</h1>
+<form method="POST" action="/auth/registration">
+    <label>email</label>
+    <input type="text" name="email" value="<%= data.email %>"/>
+    <label>password</label>
+    <input type="password" name="password" />
+    <input type="submit" value="submit" />
+</form>
+
+<%- include('./partials/errors.ejs', {
+    errors: data.errors
+}) %>
+
+<% if (data.message) { %>
+    <p><%= data.message %></p>
+<% } %>
+
+<a href="/auth/login">click here to login</a> 
+<br>
+
+<a href="/">Home</a> 
+
+<%- include('./partials/footer.ejs') %>

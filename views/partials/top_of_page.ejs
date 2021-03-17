@@ -1,0 +1,17 @@
+<% if (authenticated) { %>
+   <p>Logged in as <%= user.email %></p>
+   <div style="display: flex;" >
+        <form method="POST" action="/auth/logout" >
+            <input type="submit" value="LogOut!" >
+        </form>
+    </div>
+<% } else { %>
+    <div style="display: flex;" >
+        <form method="GET" action="/auth/login" >
+            <input type="submit" value="Login!" >
+        </form>
+        <form method="GET" action="/auth/registration" >
+            <input type="submit" value="Register!" >
+        </form>
+    </div>
+<% } %> 

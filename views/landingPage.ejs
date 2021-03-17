@@ -1,0 +1,43 @@
+<%- include('./partials/header.ejs') %>
+<h1>Self-monitoring application</h1>
+<% if (authenticated) { %>
+  <p>Logged in as <%= user.email %></p>
+  <div style="display: flex;" >
+       <form method="GET" action="/auth/logout" >
+           <input type="submit" value="LogOut!" >
+       </form>
+   </div>
+<% } else { %>
+   <div style="display: flex;" >
+       <form method="GET" action="/auth/login" >
+           <input type="submit" value="Login!" >
+       </form>
+       <form method="GET" action="/auth/registration" >
+           <input type="submit" value="Register!" >
+       </form>
+   </div>
+<% } %> 
+<label>Average mood for today: </label>
+  <% if (data.today) { %>
+    <%= data.today %>
+  <% } else { %>
+    Not enough data yet
+  <% } %>
+  <br>
+  <label>Average mood for yesterday: </label>
+  <% if (data.yesterday) { %>
+    <%= data.yesterday %>
+  <% } else { %>
+    Not enough data yet
+  <% } %>
+  <br>
+  <% if (data.today && data.yesterday) { %>
+    <% if (data.today < data.yesterday) { %>
+      <label>Things are looking gloomy today</label>
+    <% } else { %>
+      <label>Things are looking bright today</label>
+    <% } %>
+  <% } %>
+<a href="/behavior/reporting">Add report</a><br> 
+<a href="/behavior/summary">Get summary</a>
+<%- include('./partials/footer.ejs') %>

@@ -1,0 +1,39 @@
+<%- include('./partials/header.ejs') %>
+<div style="display: flex;" >
+    <form method="POST" action="/behavior/summary" >
+        <input type="week" name="week" /> 
+        <input type="month" name="month" /> 
+        <input type="submit" value="Submit!" />
+    </form>
+</div>
+<h2>Weekly average (by default from last week)</h2>
+<% if (week.sleep) { %>
+    <p>Average sleep duration: <%= week.sleep %></p>
+    <p>Average sleep quality: <%= week.quality %></p>
+<% } %>
+<% if (week.sport) { %>
+    <p>Average time spent on sports and exercise: <%= week.sport %></p>
+    <p>Average time spent studying: <%= week.studying %></p>
+<% } %>
+<% if (week.mood) { %> 
+    <p>Average generic mood: <%= week.mood %></p>
+<% } else { %> 
+    <p>No data for the given week exists</p>
+<% } %>
+
+<h2>Monthly average (by default from last month)</h2>
+<% if (month.sleep) { %>
+    <p>Average sleep duration: <%= month.sleep %></p>
+    <p>Average sleep quality: <%= month.quality %></p>
+<% } %>
+<% if (month.sport) { %>
+    <p>Average time spent on sports and exercise: <%= month.sport %></p>
+    <p>Average time spent studying: <%= month.studying %></p>
+<% } %>
+<% if (month.mood) { %> 
+    <p>Average generic mood: <%= month.mood %></p>
+<% } else { %> 
+    <p>No data for the given month exists</p>
+<% } %>
+<a href="/">Home</a>
+<%- include('./partials/footer.ejs') %>
